@@ -1,0 +1,9 @@
+*{
+    margin: 0;
+}
+
+h1 {
+    text-align: center;
+    background-color: #888;
+    padding: 15px;
+}
