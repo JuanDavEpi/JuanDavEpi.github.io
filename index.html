@@ -1,14 +1,143 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Tercera preentrega</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
-
 </head>
+
 <body>
-    <h1>Segunda Preentrega</h1>
+
+    <header>
+        <img class="logo" src="X-Logo (1).png" alt="Logo">
+        <nav class="nav" id="nav">
+            <ul class="nav-list">
+                <li>
+                <a href="#" id="openCart">
+                    <img src="shopping_cart_24dp_5F6368_FILL0_wght400_GRAD0_opsz24.png" alt="Cart">
+                    <span id="cart-count" class="cart-count">0</span>
+                </a>
+                <button id="payButton" class="button">Pay</button>
+            </ul>
+        </nav>
+    </header>
+    
+
+
+    <!--Productos para el js, de mi trabajo anterior:/-->
+
+    <section class="products">
+        <div class="container">
+            <h2>Black Magic Mouse 2nd Gen</h2>
+            <div class="container-text">
+                <p> An improved version of the previously good and ergonomic
+                    mouse designed by Apple in 2009. This time in black edition.
+                    Counting with Bluetooth this Mouse is one of the best options
+                    you can get for office jobs. It's multitouch surface allows
+                    the user to have a more customizable use of space and time.</p>
+                <div class="container-img">
+                    <img src="https://www.usucampusstore.com/Website-Images/Item%20Images/Apple%20Magic%20Mouse-%20Black.1.png?resizeid=3&resizeh=600&resizew=600"
+                        alt="Magic Mouse">
+                </div>
+            </div>
+            <a href="#" class="product-button"
+            data-product-id="magic-mouse-2nd-gen"
+            data-product-name="Black Magic Mouse 2nd Gen"
+            data-product-price="30.99"
+            >$ 30.99</a>
+        </div>
+        <div class="container">
+            <h2>Apple Charging Brick 61 W </h2>
+            <div class="container-text">
+                <p> The Apple charging brick is an essential accessory
+                    for charging a large variety of Apple products such
+                    as the MacBook, iPhone, iPod, iPad, and others.
+                    Designed for fast-charging and a long and durable life.
+                    Includes a USB - C power adapter.</p>
+                <div class="container-img">
+                    <img src="https://i5.walmartimages.com/seo/Compatible-Mac-Book-Pro-Charger-96w-USB-C-MacBook-16-15-14-13-inch-New-Air-2021-2020-2019-2018-Type-Laptop-Power-Adapter-6-6ft-Cable_0e74cd3b-5582-43ce-9252-4c038b922179.88ee72c805ce5b6e68d505e6066e5f66.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFF"
+                        alt="Apple Charging Brick">
+                </div>
+            </div>
+            <a href="#" class="product-button"
+            data-product-id="charging-brick"
+            data-product-name="Apple Charging Brick 61 W"
+            data-product-price="50.99"
+            >$ 50.99</a>
+        </div>
+        <div class="container">
+            <h2>8GB Apple Memory RAM </h2>
+            <div class="container-text">
+                <p> Apple offers several memory options for its devices.
+                    This 8GB memory ram is useful for daily tasks like video
+                    reproduction or basic photo editing. However, if you are
+                    planning to use more intensive work, we recommend using more RAM.</p>
+                <div class="container-img">
+                    <img src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MP7M2?wid=1200&hei=630&fmt=jpeg&qlt=95&.v=1495581767970"
+                        alt="Apple Memory RAM">
+                </div>
+            </div>
+            <a href="#" class="product-button"
+            data-product-id="apple-memory-ram"
+            data-product-name="8Gb Apple Memory RAM"
+            data-product-price="120.99"
+            >$ 120.99</a>
+        </div>
+        <div class="container">
+            <h2>Macbook Universal Adapter </h2>
+            <div class="container-text">
+                <p> An universal adapter is designed to maximize the
+                    compatibility between several devices. Due to the
+                    architecture and design of the MacBook, the ports
+                    have been deleted. This adapter allows the user to
+                    have more accessibility. The adapter includes: USB -
+                    C Port, HDMI Port, USB - A Port, and more!</p>
+                <div class="container-img">
+                    <img src="https://9to5mac.com/wp-content/uploads/sites/6/2022/01/satechi-pro-hub-mini-for-macbook-pro.jpg?quality=82&strip=all"
+                        alt="Macbook Universal Adapter">
+                </div>
+            </div>
+            <a href="#" class="product-button"
+            data-product-id="universal-adapter"
+            data-product-name="Universal Adapter"
+            data-product-price="70.99"
+            >$ 70.99</a>
+        </div>
+        <div class="container">
+            <h2>Apple Battery Replacement </h2>
+            <div class="container-text">
+                <p>Apple Battery Replacement refers to the service provided by Apple
+                    to replace the battery in various Apple devices, such as iPhones,
+                    iPads, MacBooks, Apple Watches, and more. Over time, the battery
+                    in these devices may degrade in performance, leading to shorter
+                    battery life and potential issues with the device's overall functionality.</p>
+                <div class="container-img">
+                    <img src="https://lmp-adapter.com/wp-content/uploads/2022/01/13166-LMP-Battery-MacBook-Air-13quot-3.-Gen-3-e1643790424572-1100x589.jpg"
+                        alt="Apple Battery Replacement">
+                </div>
+            </div>
+            <a href="#" class="product-button"
+            data-product-id="battery"
+            data-product-name="Battery replacement"
+            data-product-price="100.99"
+            >$ 100.99</a>
+        </div>
+    </section>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="main.js"></script>
+
+    <footer class="py-3 my-4">
+        <ul class="nav justify-content-center border-bottom pb-3 mb-3">
+            <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Home</a></li>
+        </ul>
+        <p class="text-center text-body-secondary">Curso de Js 2024</p>
+    </footer>
+
 </body>
+
 </html>

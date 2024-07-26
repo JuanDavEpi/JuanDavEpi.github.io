@@ -1,81 +1,97 @@
-const bebidas = [
-    {id: 1, nombre: "Margaritas", precio: 2500},
-    {id: 2, nombre: "Pepsi", precio: 3000},
-    {id: 3, nombre: "Coca Cola", precio: 3000},
-]; // catálogo inicial
+// Borrar el carrito del localStorage al cargar la página de nuevo o por si ocurre algo 
+localStorage.removeItem('cart');
 
-class Productos {
-    constructor(productos) {
-        this.items = productos;
-    }
+// Obtener el carrito del localStorage 
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-    addProduct(nombreB, precioP) {
-        const product = {id: this.generarId(), nombre: nombreB, precio: precioP};
-        this.items.push(product);
-        console.log("Product added");
-    }
+// Función para actualizar el carrito en localStorage
+function updateCartStorage() {
+    localStorage.setItem('cart', JSON.stringify(cart));
+    updateCartCount();
+}
 
-    buscarProductos(id) {
-        return this.items.find(item => item.id == id);
-    }
+// Función para actualizar el número 
+function updateCartCount() {
+    document.getElementById('cart-count').textContent = cart.length;
+}
 
-    obtenerProductos() {
-        return this.items;
-    }
+// Inicializar el contador en la página
+updateCartCount();
 
-    totalProductos() {
-        return this.items.length;
-    }
+// Seleccionar todos los botones con la clase 'product-button'
+const buttons = document.querySelectorAll('.product-button');
 
-    generarId() {
-        let max = 0;
-        this.items.forEach(item => {
-            if (item.id > max) {
-                max = item.id;
+// Añadir evento de clic a cada botón
+buttons.forEach(button => {
+    button.addEventListener('click', function(event) {
+        event.preventDefault();
+
+        // Obtener datos del producto desde data-(someting)
+        const product = {
+            id: this.dataset.productId,
+            name: this.dataset.productName,
+            price: parseFloat(this.dataset.productPrice)
+        };
+
+        // Añadir el producto al carrito
+        cart.push(product);
+
+        // Actualizar el carrito 
+        updateCartStorage();
+
+        // Mostrar la alert
+        const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
             }
         });
-        return max + 1;
+
+        Toast.fire({
+            icon: "success",
+            title: "Product added successfully"
+        });
+
+        console.log("Product was added successfully", product);
+    });
+});
+
+// Añadir evento 
+document.getElementById('openCart').addEventListener('click', function(event) {
+    event.preventDefault();
+
+    // calcular precio
+    const total = cart.reduce((sum, product) => sum + product.price, 0).toFixed(2);
+
+    // Mostrar el precio total en una alerta
+    Swal.fire({
+        icon: 'info',
+        title: 'Total price of your cart is...',
+        text: `The total price of your shopping cart is $${total}`
+    });
+});
+
+// Añadir evento de clic al botón de pago
+document.getElementById('payButton').addEventListener('click', function(event) {
+    event.preventDefault();
+
+    // Calcular el precio total del carrito
+    let total = cart.reduce((sum, product) => sum + product.price, 0);
+
+    // aplicar descuento en caso de que hayan mas de 3 productos
+    if (cart.length > 3) {
+        total *= 0.9;
     }
 
-    eliminarProducto(id) {
-        const productoEliminado = this.items.find(item => item.id === id);
-        if (productoEliminado) {
-            this.items = this.items.filter(item => item.id !== id);
-            alert("The product " + productoEliminado.nombre + " was eliminated");
-        } else {
-            alert("Product with ID " + id + " not found");
-        }
-    }
-
-    mostrarProductos() {
-        let productosTexto = this.items.map(item => `ID: ${item.id}, Nombre: ${item.nombre}, Precio: $${item.precio}`).join('\n');
-        alert("Productos disponibles:\n" + productosTexto);
-    }
-}
-
-const catalogo = new Productos(bebidas);
-
-// Agregar productos
-let nombreProducto = prompt("Ingresa el nombre del producto para agregarlo a la lista");
-let precioProducto = parseFloat(prompt("Ingresa el precio"));
-catalogo.addProduct(nombreProducto, precioProducto);
-catalogo.addProduct("Cheetos", 2000);
-catalogo.addProduct("DeTodito", 4000);
-catalogo.addProduct("Tic Tac", 4000);
-
-// Mostrar productos disponibles
-catalogo.mostrarProductos();
-
-// Eliminar producto a través de prompt
-let idProductoEliminar = parseInt(prompt("Ingresa el ID del producto para eliminarlo"));
-catalogo.eliminarProducto(idProductoEliminar);
-catalogo.mostrarProductos();
-
-// Buscar producto a través de prompt
-let idProductoBuscar = parseInt(prompt("Ingresa el ID del producto para buscarlo"));
-let producto = catalogo.buscarProductos(idProductoBuscar);
-if (producto) {
-    alert(producto.nombre + " $" + producto.precio);
-} else {
-    alert("Product not found");
-}
+    // Mostrar el precio final con descuento si aplica
+    Swal.fire({
+        icon: 'success',
+        title: 'Payment succesful',
+        text: `The price after the discount is $${total.toFixed(2)} have a great day`
+    });
+});
